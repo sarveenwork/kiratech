@@ -28,7 +28,9 @@
             _dateFormat(user.registered.date)
           }}</b-td>
           <b-td>{{ user.name.first }} {{ user.name.last }}</b-td>
-          <b-td class="text-secondary">{{ user.gender }}</b-td>
+          <b-td class="text-secondary">{{
+            user.gender.charAt(0).toUpperCase() + user.gender.slice(1)
+          }}</b-td>
           <b-td>{{ user.location.country }}</b-td>
           <b-td class="text-end text-secondary">{{ user.email }}</b-td>
         </b-tr>
