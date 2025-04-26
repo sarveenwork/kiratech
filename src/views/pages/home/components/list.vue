@@ -5,6 +5,7 @@
         v-model="searchQuery"
         placeholder="Search by First Name or Last Name"
         class="w-100"
+        :disabled="isLoading"
       />
     </div>
     <b-table-simple borderless hover>
@@ -57,6 +58,7 @@ import Container from "@/views/layouts/container";
 import ViewDetails from "@/views/pages/home/dialog/view-details.vue";
 import { getUser } from "@/api/user";
 import { debounce } from "lodash"; // Import lodash
+import Swal from "sweetalert2";
 
 export default {
   name: "UserList",
@@ -91,12 +93,18 @@ export default {
     async getAllUsers() {
       this.isLoading = true;
       this.users = [];
+      this.searchQuery = "";
       try {
         const res = await getUser();
         if (res.status == 200) {
           this.users = res.data.results;
         }
       } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
         console.error("Error fetching users:", error);
       }
       this.isLoading = false;
