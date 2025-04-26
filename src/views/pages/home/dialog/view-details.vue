@@ -21,7 +21,9 @@
             <label for="gender">Gender:</label>
           </div>
           <div class="col-8">
-            <span id="gender">{{ gender }}</span>
+            <span id="gender">{{
+              gender.charAt(0).toUpperCase() + gender.slice(1)
+            }}</span>
           </div>
         </div>
         <div class="row form-group p-1">
